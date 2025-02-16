@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProductCatalog.Core.Entities.Product>
+@{
+    ViewData["Title"] = "Active Products";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Active Products</h2>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Duration (Days)</th>
+                <th>Price</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@product.DurationInDays</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@product.Id">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

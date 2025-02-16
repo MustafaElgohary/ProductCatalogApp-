@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProductCatalog.Core.Entities.Product>
+@{
+    ViewData["Title"] = "Product Management";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Product Management</h2>
+    <a asp-action="Create" class="btn btn-success mb-3">Add New Product</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.StartDate.ToString("yyyy-MM-dd")</td>
+                        <td>@product.DurationInDays</td>
+                        <td>@product.Price.ToString("C")</td>
+                    <td>@product.Category?.Name</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger btn-sm">Delete</a>
+                            <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-info btn-sm">View</a>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
